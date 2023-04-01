@@ -8,3 +8,10 @@
 {% endif %}
 <br>
 {{post.image}}
+<br>
+<br>
+{% if user.is_authenticated and user.profile.nickname == post.user.nickname %}
+<a href="{% url 'posts:update_page' post.id %}">글 수정</a>
+<a href="{% url 'posts:delete' post.id %}">글 삭제</a>
+{% endif %}
+<a href="{% url 'posts:home' %}">돌아가기</a>

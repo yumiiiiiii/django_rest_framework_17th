@@ -1,4 +1,7 @@
 {%for post in posts.all %}
-<a href="{% url 'posts:detail' post.id %}">{{post.content}}</a> :: {{post.user}}
+<a href="{% url 'posts:detail' post.id %}">[{{post.id}}]</a> :: {{post.content}}
 <br>
 {% endfor %}
+{% if user.is_authenticated %}
+<a href="{% url 'posts:new' %}">글 등록</a>
+{% endif %}
