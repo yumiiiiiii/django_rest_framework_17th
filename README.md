@@ -9,17 +9,17 @@
 - 모델명.object.filter(필드=필드값) : 모델 값 검색!
 아래는 활용 결과들
 1. user를 만들고, 그에 맞는 profile을 만들었다. post 객체가 user가 아닌 이를 상속받는 profile을 참조하기 때문에...만들어야함.
-![orm user,profile 만들기](./images/orm user,profile 만듥.png)
+![orm user,profile 만들기](./images/orm1.png)
 2. me라는 변수에 profile을 저장하고, 이를 이용해 post 객체를 만들었다.
-![orm me에 profile저장, post 생성](./images/orm me에 profile저장, post생성.png)
+![orm me에 profile저장, post 생성](./images/orm2.png)
 3. filter기능을 활용했다. 일부만 검색해도 일치하면 다 나오도록 만들고 싶었는데, 그렇게 하려면 django에서 제공하는 변수 Q를 이용해서 filter를 적용하면 된다.
 
-![orm filter](./images/orm filter.png)
-![post 내용 filter](./images/post 내용 filter.png)
+![orm filter](./images/orm3.png)
+![post 내용 filter](./images/orm.png)
 4. 이외에도 자주 쓰일 것 같은 orm 정렬, 수정, 삭제 등을 써봤다.
 ![orm정렬](./images/orm정렬.png)
-![orm 수정](./images/orm 수정.png)
-![orm 삭제](./images/orm .png)
+![orm 수정](./images/orm수정.png)
+![orm 삭제](./images/orm삭제.png)
 
 ---
 ### accounts
@@ -122,6 +122,7 @@ end_time:
  - 환경변수 설치하는 라이브러리는 ~~environ~~django-environ
  - html 건드리면서 참고한 사이트
  [html type 정리] (http://www.tcpschool.com/html-input-types/number)
+ -readme는 파일명에 띄어쓰기 인식을 못하나?? images 이름 수정해야됐음.
  
  ---
  ### 회고...느낀점...
