@@ -1,0 +1,10 @@
+{{post.content}} :: {{post.user}} -{{post.created_at}}
+<br>
+{% if post.is_question %}
+질문글
+{% endif %}
+{% if post.is_anony %}
+익명글
+{% endif %}
+<br>
+{{post.image}}

@@ -1,0 +1,4 @@
+{%for post in posts.all %}
+<a href="{% url 'posts:detail' post.id %}">{{post.content}}</a> :: {{post.user}}
+<br>
+{% endfor %}
