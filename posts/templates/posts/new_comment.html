@@ -1,0 +1,12 @@
+<form method="POST" action="{% url 'posts:create_comment' post.id %}">
+    {% csrf_token %}
+    content:
+    <br>
+    <input name="content" type="text">
+    <br>
+    is_anony:
+    <br>
+    <input name="is_anony" type="checkbox" checked>
+    <br>
+    <input type="submit" class="btn btn-primary" value="create_comment">
+</form>

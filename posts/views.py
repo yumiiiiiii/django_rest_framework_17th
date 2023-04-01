@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
+from .models import Post, Comment
 from accounts.models import Profile
 # Create your views here.
 
@@ -58,5 +58,34 @@ def update(request, post_id):
     else:
         post_update.is_question = True
     post_update.save()
+    return redirect('posts:home')
+
+
+
+#여기부터 댓글 함수
+def new_comment(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'posts/new_comment.html', {'post':post})
+
+
+def create_comment(request, post_id):
+    me=request.user.profile
+    post=get_object_or_404(Post, pk=post_id)
+    if request.method == "POST":
+        new_comment=Comment()
+        new_comment.post=post
+        new_comment.content=request.POST['content']
+        new_comment.user = me
+        if len(request.POST.getlist('is_anony')) == 0:
+            new_comment.is_anony = False
+        else:
+            new_comment.save()
+        return redirect('posts:detail', post_id)
+    return render(request, 'posts:home')
+
+
+def delete_comment(request, comment_id):
+    comment_delete=get_object_or_404(Comment, pk=comment_id)
+    comment_delete.delete()
     return redirect('posts:home')
 
