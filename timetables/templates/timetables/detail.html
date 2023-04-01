@@ -1,8 +1,7 @@
 {{timetable.title}}
 <br>
-<br>
 {% for subject in timetable.subjects.all %}
-{{subject.name}} : {{subject.day}} - {{subject.place}} ( {{subject.start_time}}_{{subject.end_time}} )
+{{subject.day}} : {{subject.name}}/{{subject.teacher}} - {{subject.place}} ( {{subject.start_time}}_{{subject.end_time}} )
 <br>
 {% endfor %}
 {% if user.is_authenticated %}

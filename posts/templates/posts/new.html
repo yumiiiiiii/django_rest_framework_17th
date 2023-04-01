@@ -1,4 +1,4 @@
-<form method="POST" action="{% url 'posts:create' %}">
+<form method="POST" action="{% url 'posts:create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     content:
     <br>
@@ -11,6 +11,10 @@
     is_question:
     <br>
     <input name="is_question" type="checkbox">
+    <br>
+    image:
+    <br>
+    <input name="image" type="file" accept="image/*">
     <br>
     <input type="submit" class="btn btn-primary" value="create">
 </form>

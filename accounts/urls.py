@@ -8,4 +8,7 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
+
+    path('friend/', friend, name='friend'),
+    path('new_friend/<int:profile_id>', new_friend, name='new_friend'),
 ]

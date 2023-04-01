@@ -1,0 +1,10 @@
+{%for profile in profiles.all %}
+{{profile.nickname}}
+{% if user.is_authenticated and user.profile.nickname == profile.nickname %}
+
+{% else %}
+<a href="{% url 'accounts:new_friend' profile.id %}" method="POST"> -친구맺기</a>
+
+{% endif %}
+<br>
+{% endfor %}

@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Profile
+from .models import Profile, Friend
 # Create your views here.
 
 
@@ -43,3 +43,19 @@ def logout(request):
 
 def home(request):
     return render(request, 'accounts/home.html')
+
+
+def friend(request):
+    profiles = Profile.objects
+    friends =Friend.objects
+    return render(request, 'accounts/friend.html', {'profiles':profiles, 'friends':friends})
+
+def new_friend(request, profile_id):
+    me = request.user.profile
+    friend = get_object_or_404(Profile, pk=profile_id)
+    new_friend=Friend()
+    new_friend.user=me
+    new_friend.friend=friend
+    new_friend.save()
+    return render(request, 'accounts/home.html')
+

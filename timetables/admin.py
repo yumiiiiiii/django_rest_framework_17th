@@ -5,5 +5,4 @@ from .models import *
 
 admin.site.register(Subject)
 admin.site.register(Timetable)
-admin.site.register(Friend)
 

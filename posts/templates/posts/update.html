@@ -1,4 +1,4 @@
-<form method="POST" action="{% url 'posts:update' post.id %}">
+<form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
     {% csrf_token %}
     content:
     <br>
@@ -11,6 +11,10 @@
     is_question:
     <br>
     <input name="is_question" type="checkbox">
+    <br>
+    image:
+    <br>
+    <input name="image" type="files" accept="image/*">
     <br>
     <input type="submit" class="btn btn-primary" value="update">
 </form>

@@ -7,7 +7,9 @@
 익명글
 {% endif %}
 <br>
-{{post.image}}
+{% if post.image %}
+ <img src="{{ post.image.url }}" width="100" height="100">
+{% endif %}
 <br>
 <br>
 {% for comment in post.comments.all %}

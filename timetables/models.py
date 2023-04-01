@@ -27,9 +27,3 @@ class Subject(models.Model):
     def __str__(self):
         return f"{self.name} : {self.teacher}"
 
-class Friend(models.Model):
-    user = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='friends')
-    friend = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user.username} is friends with {self.friend.username}"

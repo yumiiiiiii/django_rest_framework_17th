@@ -31,6 +31,7 @@ def create(request):
             new_post.is_question = False
         else:
             new_post.is_question= True
+        new_post.image=request.FILES['image']
         new_post.save()
         return redirect('posts:home')
     return render(request, 'posts:home')
