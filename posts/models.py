@@ -1,13 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+# from django.contrib.auth.models import User
+from accounts.models import Profile
 
 # from accounts.models import Profile
 # Create your models here.
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     content=models.TextField()
     is_anony=models.BooleanField(default=True)
     is_question=models.BooleanField(default=False)
@@ -16,4 +16,4 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.content
+        return f'{self.content} : {self.user}'
