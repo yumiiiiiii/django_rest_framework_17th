@@ -9,17 +9,17 @@
 - 모델명.object.filter(필드=필드값) : 모델 값 검색!
 아래는 활용 결과들
 1. user를 만들고, 그에 맞는 profile을 만들었다. post 객체가 user가 아닌 이를 상속받는 profile을 참조하기 때문에...만들어야함.
-![orm user,profile 만들기](https://user-images.githubusercontent.com/102947194/229291993-16016cee-00f3-4cd8-8d95-b7ea7524e23e.png)
+![orm user,profile 만들기](./images/orm user,profile 만듥.png)
 2. me라는 변수에 profile을 저장하고, 이를 이용해 post 객체를 만들었다.
-![orm me에 profile저장, post 생성](https://user-images.githubusercontent.com/102947194/229292051-1678ee90-c523-4e5c-a76e-ae38b68c59cc.png)
+![orm me에 profile저장, post 생성](./images/orm me에 profile저장, post생성.png)
 3. filter기능을 활용했다. 일부만 검색해도 일치하면 다 나오도록 만들고 싶었는데, 그렇게 하려면 django에서 제공하는 변수 Q를 이용해서 filter를 적용하면 된다.
 
-![orm filter](https://user-images.githubusercontent.com/102947194/229292092-6ded5c09-4f5f-4cd7-aa85-ebec4da86d64.png)
-![post 내용 filter](https://user-images.githubusercontent.com/102947194/229292148-91bcb851-56d7-4184-bc3a-795df9c6389c.png)
+![orm filter](./images/orm filter.png)
+![post 내용 filter](./images/post 내용 filter.png)
 4. 이외에도 자주 쓰일 것 같은 orm 정렬, 수정, 삭제 등을 써봤다.
-![orm정렬](https://user-images.githubusercontent.com/102947194/229292167-1f8567a1-bf69-4dc1-8621-bf968a79a5f5.png)
-![orm 수정](https://user-images.githubusercontent.com/102947194/229292172-4f101dfd-67a1-40fb-ae5c-45041c25643d.png)
-![orm 삭제](https://user-images.githubusercontent.com/102947194/229292174-e511e872-b34b-4e86-afbf-d15651eba355.png)
+![orm정렬](./images/orm정렬.png)
+![orm 수정](./images/orm 수정.png)
+![orm 삭제](./images/orm .png)
 
 ---
 ### accounts
@@ -111,7 +111,7 @@ end_time:
  
  ---
  ### ERDCloud
- ![erd](https://user-images.githubusercontent.com/102947194/229295872-63f7caed-0195-4a8e-ae0a-5df23c944c49.png)
+ ![erd](./images/erd.png)
 
  ---
  ### 자잘한 오류들 및 참고
