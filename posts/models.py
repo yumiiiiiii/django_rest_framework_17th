@@ -26,6 +26,7 @@ class Comment(models.Model):
     is_anony = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    re_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f'{self.content} : {self.user}'
