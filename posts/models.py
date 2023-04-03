@@ -11,7 +11,7 @@ class Post(models.Model):
     content=models.TextField()
     is_anony=models.BooleanField(default=True)
     is_question=models.BooleanField(default=False)
-    image=models.ImageField(blank=True, null=True, upload_to="post_image")
+    image=models.ImageField(blank=True, null=True, upload_to="post_image") #image 필드로 바꾸고 s3연결
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

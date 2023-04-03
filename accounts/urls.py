@@ -10,5 +10,5 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
 
     path('friend/', friend, name='friend'),
-    path('new_friend/<int:profile_id>', new_friend, name='new_friend'),
+    path('new-friend/<int:profile_id>/', new_friend, name='new-friend'),
 ]

@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import auth
 from .models import Profile, Friend
 # Create your views here.
@@ -56,6 +55,10 @@ def new_friend(request, profile_id):
     new_friend=Friend()
     new_friend.user=me
     new_friend.friend=friend
-    new_friend.save()
+    if Friend.objects.filter(user=me, friend=friend): # 친구 맺기 해제추가!
+        old_frined=Friend.objects.get(user=me, friend=friend)
+        old_frined.delete()
+    else:
+        new_friend.save()
     return render(request, 'accounts/home.html')
 
