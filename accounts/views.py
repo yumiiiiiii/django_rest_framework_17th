@@ -108,7 +108,7 @@ class FriendList(APIView):
         serializer=FriendSerializer(data=request.data)
         if serializer.is_valid():
             if Friend.objects.filter(user=user, friend=serializer.validated_data['friend']):
-                old_frined = Friend.objects.get(user=user, friend=serializer.validated_data['friend'])
+                old_frined = Friend.objects.get(user=user, friend=serializer.validated_data['friend']) #validated_data로
                 old_frined.delete()
             else:
                 serializer.save(user=self.request.user.profile, friend=serializer.validated_data['friend'])
