@@ -7,4 +7,5 @@ urlpatterns = [
     path('user/<int:user_id>/', UserDetail.as_view()),
     path('profile/', ProfileList.as_view()),
     path('profile/<int:profile_id>/', ProfileDetail.as_view()),
+    path('friend/', FriendList.as_view()),
 ]

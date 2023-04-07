@@ -5,7 +5,7 @@ from .models import Profile, Friend, User
 
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import ProfileSerializer, UserSerializer
+from .serializers import ProfileSerializer, UserSerializer, FriendSerializer
 from rest_framework.views import APIView
 # Create your views here.
 
@@ -93,6 +93,31 @@ class ProfileDetail(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class FriendList(APIView):
+
+    def get(self, request, format=None):
+        user = self.request.user.profile
+        friend = Friend.objects.filter(user=user)
+        serializer = FriendSerializer(friend, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        user = self.request.user.profile
+        serializer=FriendSerializer(data=request.data)
+        if serializer.is_valid():
+            if Friend.objects.filter(user=user, friend=serializer.validated_data['friend']):
+                old_frined = Friend.objects.get(user=user, friend=serializer.validated_data['friend'])
+                old_frined.delete()
+            else:
+                serializer.save(user=self.request.user.profile, friend=serializer.validated_data['friend'])
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 

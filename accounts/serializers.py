@@ -39,3 +39,11 @@ class ProfileSerializer(serializers.ModelSerializer):
             )
             profile.save()
         return profile
+
+
+class FriendSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.nickname')
+
+    class Meta:
+        model=Friend
+        fields=['id','user','friend']
