@@ -226,3 +226,9 @@ urlpatterns = [
 - perform_create로 serializer의 save 메소드를 재정의할 수 있다. user에 따로 저장하기 위해 재정의했음.
 - 처음에는 PostViewSet을 불러올 때 ''로 url을 설정하지 않았는데, 그러면 CommentViewSet을 불러올 때 url을 알아보지 못한다.
 - 추가로 viewset을 쓰고 싶다면 url은 등록해주는 것이 좋다.
+
+---
+
+## user 관련 기능
+- user와 관련된 기능은 viewset으로 한번에 하기에는 확장이 어려워 CBV 방식으로 그대로 구현하였다.
+- 

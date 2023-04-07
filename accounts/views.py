@@ -4,28 +4,10 @@ from django.contrib import auth
 from .models import Profile, Friend, User
 
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from .serializers import ProfileSerializer, UserSerializer, FriendSerializer
 from rest_framework.views import APIView
 # Create your views here.
-
-# def friend(request):
-#     profiles = Profile.objects
-#     friends =Friend.objects
-#     return render(request, 'accounts/friend.html', {'profiles':profiles, 'friends':friends})
-#
-# def new_friend(request, profile_id):
-#     me = request.user.profile
-#     friend = get_object_or_404(Profile, pk=profile_id)
-#     new_friend=Friend()
-#     new_friend.user=me
-#     new_friend.friend=friend
-#     if Friend.objects.filter(user=me, friend=friend): # 친구 맺기 해제추가!
-#         old_frined=Friend.objects.get(user=me, friend=friend)
-#         old_frined.delete()
-#     else:
-#         new_friend.save()
-#     return render(request, 'accounts/home.html')
 
 class UserList(APIView):
     def get(self, request, format=None):
@@ -95,6 +77,7 @@ class ProfileDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 class FriendList(APIView):
 
     def get(self, request, format=None):
@@ -114,6 +97,44 @@ class FriendList(APIView):
                 serializer.save(user=self.request.user.profile, friend=serializer.validated_data['friend'])
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class FriendViewSet(viewsets.ModelViewSet):
+#     queryset=Friend.objects.all()
+#     serializer_class=FriendSerializer
+#
+#     def perform_create(self, serializer):
+#         serializer.save(user = self.request.user.profile)
+
+#로그인 함수
+class LoginView(APIView):
+    serializer_class = UserSerializer
+    def get(self, request):
+        user = get_object_or_404(User, id=request.user.id)
+        serializer = UserSerializer(user)
+        return Response({'message': '현재 로그인된 유저 정보 조회 성공', 'data': serializer.data}, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        user = auth.authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        # user = get_object_or_404(User, id=request.user.id)
+        # serializer = UserSerializer(user)
+        if user is not None:
+            auth.login(request, user)
+            serializer = UserSerializer(user)
+            return Response({'data':serializer.data}, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+#로그아웃 함수
+class LogoutView(APIView):
+
+    def post(self, request):
+        response = Response({
+            "message": "로그아웃 성공"
+            }, status=status.HTTP_202_ACCEPTED)
+        auth.logout(request)
+
+        return response
 
 
 
