@@ -131,3 +131,43 @@ class PostDetail(APIView):
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+# 여기부터 댓글 함수
+class CommentList(APIView):
+    def get(self, request, format=None):
+        comment=Comment.objects.all()
+        serializer=PostSerializer(comment, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer=CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=self.request.user.profile)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CommentDetail(APIView):
+
+    def get_object(self, comment_id):
+        try:
+            return Comment.objects.get(pk=comment_id)
+        except Coment.DoesNotExist:
+            raise status.HTTP_404_NOT_FOUND
+
+    def get(self, request, comment_id, format=None):
+        comment=self.get_object(comment_id)
+        serializer=CommentSerializer(comment)
+        return Response(serializer.data)
+
+    def put(self, request, comment_id, format=None):
+        comment = self.get_object(comment_id)
+        serializer=CommentSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, comment_id, format=None):
+        comment = self.get_object(comment_id)
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
