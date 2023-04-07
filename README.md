@@ -231,4 +231,10 @@ urlpatterns = [
 
 ## user 관련 기능
 - user와 관련된 기능은 viewset으로 한번에 하기에는 확장이 어려워 CBV 방식으로 그대로 구현하였다.
-- 
+- 또한 login, logout 기능을 구현했다. django 에서 기본으로 제공하는 auth 함수를 이용하였다.
+- Response에 serializer.data를 그냥 넣으면 입력하는 칸에도 data를 return해서 불편함이 있다. 그럴때에는 {'data':serializer.data} 이런 식으로 하면 json형식으로 결과창에 return 한다.
+- user 기능을 확장해서 token을 발행해 관리하거나, 권한 관리도 가능할 것이다. 시간이 나면 여기에 도전해야지...
+
+
+---
+
