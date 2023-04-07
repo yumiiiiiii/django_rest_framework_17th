@@ -202,3 +202,27 @@ def save_user_profile(sender, instance, **kwargs):
 ---
 
 ## Viewset으로 코드 리팩토링하기
+```
+# views.py
+class PostViewSet(viewsets.ModelViewSet):
+    queryset=Post.objects.all()
+    serializer_class=PostSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user.profile)
+        
+# urls.py
+app_name = 'posts'
+router = DefaultRouter()
+
+router.register('post', PostViewSet) #comment list볼러면 설정해줘야함..
+router.register('comment',CommentViewSet)
+
+urlpatterns = [
+    path('', include(router.urls)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+- 코드가 완전 간단하게 줄어든다!
+- perform_create로 serializer의 save 메소드를 재정의할 수 있다. user에 따로 저장하기 위해 재정의했음.
+- 처음에는 PostViewSet을 불러올 때 ''로 url을 설정하지 않았는데, 그러면 CommentViewSet을 불러올 때 url을 알아보지 못한다.
+- 추가로 viewset을 쓰고 싶다면 url은 등록해주는 것이 좋다.
