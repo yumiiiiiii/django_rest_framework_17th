@@ -1,10 +1,13 @@
+import django_filters
+
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
 from rest_framework.views import APIView
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
+from django_filters import filterset
 # Create your views here.
 
 
@@ -91,6 +94,8 @@ from rest_framework import viewsets
 class PostViewSet(viewsets.ModelViewSet):
     queryset=Post.objects.all()
     serializer_class=PostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['content', 'user__nickname']
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user.profile)
@@ -102,4 +107,5 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user.profile)
+
 
