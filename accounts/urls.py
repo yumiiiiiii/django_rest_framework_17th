@@ -11,5 +11,8 @@ urlpatterns = [
     #
     # path('friend/', friend, name='friend'),
     # path('new-friend/<int:profile_id>/', new_friend, name='new-friend'),
-    path('profile/', ProfileList.as_view())
+    path('user/', UserList.as_view()),
+    path('user/<int:user_id>/', UserDetail.as_view()),
+    path('profile/', ProfileList.as_view()),
+    path('profile/<int:profile_id>/', ProfileDetail.as_view()),
 ]
