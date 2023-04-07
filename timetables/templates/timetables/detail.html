@@ -1,9 +1,0 @@
-{{timetable.title}}
-<br>
-{% for subject in timetable.subjects.all %}
-{{subject.day}} : {{subject.name}}/{{subject.teacher}} - {{subject.place}} ( {{subject.start_time}}_{{subject.end_time}} )
-<br>
-{% endfor %}
-{% if user.is_authenticated %}
-<a href="{% url 'timetables:new_subject' timetable.id %}">과목 추가</a>
-{% endif %}

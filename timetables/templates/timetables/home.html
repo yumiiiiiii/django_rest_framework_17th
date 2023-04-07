@@ -1,7 +1,0 @@
-{%for timetable in timetables.all %}
-<a href="{% url 'timetables:detail' timetable.id %}">[{{timetable.id}}]</a> :: {{timetable.title}}
-<br>
-{% endfor %}
-{% if user.is_authenticated %}
-<a href="{% url 'timetables:new' %}">시간표 추가</a>
-{% endif %}
