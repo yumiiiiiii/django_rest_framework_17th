@@ -1,14 +1,24 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 from django.conf.urls.static import static
 from django.conf import settings
+from .views import *
+from rest_framework.routers import DefaultRouter
 
 app_name = 'posts'
+router = DefaultRouter()
+
+router.register('', PostViewSet)
+
+router.register('comment',CommentViewSet)
+
 urlpatterns = [
 
-    path('', PostList.as_view()),
-    path('<int:post_id>/', PostDetail.as_view()),
-    path('comment/', CommentList.as_view()),
-    path('comment/<int:comment_id>/', CommentDetail.as_view()),
+    # path('', PostList.as_view()),
+    # path('<int:post_id>/', PostDetail.as_view()),
+    # path('comment/', CommentList.as_view()),
+    # path('comment/<int:comment_id>/', CommentDetail.as_view()),
+
+    path('', include(router.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
