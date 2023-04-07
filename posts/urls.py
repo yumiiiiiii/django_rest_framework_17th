@@ -21,4 +21,5 @@ urlpatterns = [
     path('<int:post_id>/', PostDetail.as_view()),
     path('comment/', CommentList.as_view()),
     path('comment/<int:comment_id>/', CommentDetail.as_view()),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
