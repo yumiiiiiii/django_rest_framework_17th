@@ -247,7 +247,7 @@ urlpatterns = [
 - pip install django-filter 설치 후 post에서 filter 기능이 잘 되는 것은 확인했다.
 - 만약 filter하고 싶은 내용에 외부키가 존재한다면, search_fileds=['외부키__필드이름'] 이런식으로 설정해야 오류가 안난다.
 - 
-![filter 사용](.h/images/88.png)
+![filter 사용](./images/88.png)
 
 ---
 회고 및 오류 정리
