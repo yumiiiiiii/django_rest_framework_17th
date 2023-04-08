@@ -185,6 +185,7 @@ class PostDetail(APIView):
 - on_delete=models.CASCADE이므로 user가 삭제되면 profile이 삭제된다.
 - profile은 user가 만들어질 때 함께 만들어진 profile의 id값으로 특정 데이터를 가져와 PUT 메소드가 가능하다.
 - 또, username과 nickname은 중복이 안되도록 만들었는데 이 부분은 serializer에서도 구현을 해주었다. 같은 기능도 model, serializer, view 등 어디서 구현할지 고민하고 여러 방식으로 시도해보는 것도 좋은 것 같다.
+- 
 ![사진2](./images/55.png)
 
 ```
@@ -227,6 +228,7 @@ urlpatterns = [
 - perform_create로 serializer의 save 메소드를 재정의할 수 있다. user에 따로 저장하기 위해 재정의했음.
 - 처음에는 PostViewSet을 불러올 때 ''로 url을 설정하지 않았는데, 그러면 CommentViewSet을 불러올 때 url을 알아보지 못한다.
 - 추가로 viewset을 쓰고 싶다면 url은 등록해주는 것이 좋다.
+- 
 ![viewset으로 구현](./images/66.png)
 
 ---
@@ -244,6 +246,7 @@ urlpatterns = [
 - 하나 이상의 메소드를 이용하라는 게 어떤 말인지 모르겠다...
 - pip install django-filter 설치 후 post에서 filter 기능이 잘 되는 것은 확인했다.
 - 만약 filter하고 싶은 내용에 외부키가 존재한다면, search_fileds=['외부키__필드이름'] 이런식으로 설정해야 오류가 안난다.
+- 
 ![filter 사용](.h/images/88.png)
 
 ---
@@ -252,4 +255,6 @@ urlpatterns = [
 - reply 기능은 스스로를 참조하는 외부키로 만드는 방법을 고려했는데, view를 만드는데 오류가 많이 나고 헷갈렸다...아예 다른 모델로 빼는 것도 생각을 해봐야겠다.
 - 늘 유저 기능이 어렵다. 그나마 django는 유저관련 함수도 제공하고, one-to-one으로 profile을 만들 수 있어 좀 덜 헷갈리는 듯...
 - 좋아요, 대댓글, 과목 등 다양한 기능의 추가 및 수정의 필요성을 느꼈다...
+- 왜 안될까...
+
 ![안돼](./images/99.png)
