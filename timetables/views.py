@@ -7,7 +7,6 @@ from .serializers import *
 from rest_framework.views import APIView
 # Create your views here.
 from rest_framework import viewsets
-from .filters import *
 
 # class TimetableList(APIView):
 #     def get(self, request, format=None):
