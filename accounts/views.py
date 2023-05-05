@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import User, Friend
 
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status
 from .serializers import SignUpSerializer, LoginSerializer, FriendSerializer
 from rest_framework.views import APIView
 # Create your views here.
@@ -20,7 +20,6 @@ class SignUpView(APIView):
         if serializer.is_valid():
             user = serializer.save()
 
-            # jwt 토큰 접근
             token = TokenObtainPairSerializer.get_token(user)
             refresh_token = str(token)
             access_token = str(token.access_token)
@@ -51,10 +50,8 @@ class LoginView(APIView):
         user = authenticate(
             username=request.data.get("username"), password=request.data.get("password")
         )
-        # 이미 회원가입 된 유저일 때
         if user is not None:
             serializer = LoginSerializer(user)
-            # jwt 토큰 접근
             token = TokenObtainPairSerializer.get_token(user)
             refresh_token = str(token)
             access_token = str(token.access_token)
@@ -76,18 +73,6 @@ class LoginView(APIView):
         else:
             return Response({'message': "존재하지 않는 유저"}, status=status.HTTP_400_BAD_REQUEST)
 
-
-# class ProfileView(APIView):
-#     serializer_class = ProfileSerializer
-#
-#     def get(self, request):
-#         user = request.user
-#         data = get_object_or_404(User, pk=user.id)
-#
-#         serializer = self.serializer_class(data)
-#
-#         return Response({'message': "프로필 조회 성공", 'data': serializer.validated_data}, status=status.HTTP_200_OK)
-
 class FriendList(APIView):
 
     def get(self, request, format=None):
@@ -107,14 +92,6 @@ class FriendList(APIView):
                 serializer.save(user=self.request.user.profile, friend=serializer.validated_data['friend'])
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# class FriendViewSet(viewsets.ModelViewSet):
-#     queryset=Friend.objects.all()
-#     serializer_class=FriendSerializer
-#
-#     def perform_create(self, serializer):
-#         serializer.save(user = self.request.user.profile)
-
 
 #로그아웃 함수
 class LogoutView(APIView):

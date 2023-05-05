@@ -255,7 +255,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 6️⃣ 보안
 - Cors 설정...옛날에 아무것도 모르고 프론트랑 연결 시도하다가 오류나서 헤맸던 기억이..ㅜㅜ
-- settings에 cors관련해서 설치 후 작성해줌! 모든 호스트 허용으로 해줬다.
+- settings에 cors관련해서 설치 후 작성해줌! 모든 호스트 허용으로 해줬다. 
 
 
 ---

@@ -14,11 +14,6 @@ router.register('comments',CommentViewSet)
 
 urlpatterns = [
 
-    # path('', PostList.as_view()),
-    # path('<int:post_id>/', PostDetail.as_view()),
-    # path('comment/', CommentList.as_view()),
-    # path('comment/<int:comment_id>/', CommentDetail.as_view()),
-
     path('', include(router.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

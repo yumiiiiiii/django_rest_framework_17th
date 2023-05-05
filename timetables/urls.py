@@ -10,11 +10,6 @@ router.register('timetables', TimetableViewSet) #comment list볼러면 설정해
 
 router.register('subjects', SubjectViewSet)
 urlpatterns = [
-    # path('', TimetableList.as_view()),
-    # path('<int:timetable_id>/', TimetableDetail.as_view()),
-    # path('subject/', SubjectList.as_view()),
-    # path('subject/<int:subject_id>/', SubjectDetail.as_view()),
-
     path('', include(router.urls)),
 
 ]
