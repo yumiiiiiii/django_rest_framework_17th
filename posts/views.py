@@ -8,6 +8,11 @@ from rest_framework.views import APIView
 
 from rest_framework import viewsets, filters
 from django_filters import filterset
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
+
 # Create your views here.
 
 
@@ -91,11 +96,17 @@ from django_filters import filterset
 #         comment.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
+# @api_view(['GET'])
+# @permission_classes((IsAuthenticated, ))
+# @authentication_classes((JWTTokenUserAuthentication))
 class PostViewSet(viewsets.ModelViewSet):
     queryset=Post.objects.all()
     serializer_class=PostSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['content', 'user__nickname']
+
+    # authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated,]
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)

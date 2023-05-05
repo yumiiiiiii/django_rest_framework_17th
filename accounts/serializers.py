@@ -24,7 +24,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'password']
+        fields = ['username', 'password']
     def validate(self, data):
         username = data.get("username", None)
         password = data.get("password", None)
@@ -39,23 +39,23 @@ class LoginSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('존재하지 않는 사용자입니다.')
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=User
-        fields=['id', 'user','nickname', 'university','enter_year','created_at','updated_at']
-
-
-    def create(self, validated_data):
-        if Profile.objects.filter(nickname=validated_data['nickname']).exists():
-            raise serializers.ValidationError('nickname 존재')
-        else:
-            profile = Profile.objects.create(
-                nickname=validated_data['nickname'],
-                university=validated_data['university'],
-                enter_year=validated_data['enter_year']
-            )
-            profile.save()
-        return profile
+# class ProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=User
+#         fields=['id', 'user','nickname', 'university','enter_year','created_at','updated_at']
+#
+#
+#     def create(self, validated_data):
+#         if Profile.objects.filter(nickname=validated_data['nickname']).exists():
+#             raise serializers.ValidationError('nickname 존재')
+#         else:
+#             profile = Profile.objects.create(
+#                 nickname=validated_data['nickname'],
+#                 university=validated_data['university'],
+#                 enter_year=validated_data['enter_year']
+#             )
+#             profile.save()
+#         return profile
 
 
 class FriendSerializer(serializers.ModelSerializer):

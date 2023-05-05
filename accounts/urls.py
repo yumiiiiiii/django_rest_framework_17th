@@ -25,9 +25,9 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('logout/', LogoutView.as_view()),
     path('signup/', SignUpView.as_view()),
-    path('profile/', ProfileView.as_view()),
+    # path('profile/', ProfileView.as_view()),
     # path('', include(router.urls)),
 
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('refresh/token/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
