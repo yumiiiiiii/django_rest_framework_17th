@@ -74,7 +74,7 @@ class LoginView(APIView):
             res.set_cookie("refresh", refresh_token, httponly=True)
             return res
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': "존재하지 않는 유저"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # class ProfileView(APIView):

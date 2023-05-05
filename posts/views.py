@@ -10,7 +10,7 @@ from rest_framework import viewsets, filters
 from django_filters import filterset
 
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework_simplejwt.authentication import JWTTokenUserAuthentication
 
 # Create your views here.
@@ -105,8 +105,6 @@ class PostViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['content', 'user__nickname']
 
-    # authentication_classes = [TokenAuthentication, ]
-    permission_classes = [IsAuthenticated,]
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)

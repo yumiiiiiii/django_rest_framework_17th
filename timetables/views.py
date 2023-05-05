@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from rest_framework.permissions import IsAuthenticated
 
 from .models import *
 from rest_framework.response import Response
@@ -92,6 +93,8 @@ from rest_framework import viewsets
 class TimetableViewSet(viewsets.ModelViewSet):
     queryset=Timetable.objects.all()
     serializer_class=TimetableSerializer
+
+    permission_classes = [IsAuthenticated, ]
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
