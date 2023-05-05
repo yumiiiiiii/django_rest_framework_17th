@@ -6,9 +6,9 @@ from rest_framework.routers import DefaultRouter
 app_name = 'timetables'
 router = DefaultRouter()
 
-router.register('timetable', TimetableViewSet) #comment list볼러면 설정해줘야함..
+router.register('timetables', TimetableViewSet) #comment list볼러면 설정해줘야함..
 
-router.register('subject', SubjectViewSet)
+router.register('subjects', SubjectViewSet)
 urlpatterns = [
     # path('', TimetableList.as_view()),
     # path('<int:timetable_id>/', TimetableDetail.as_view()),
