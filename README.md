@@ -1,6 +1,5 @@
 # CEOS 17기 백엔드 스터디
 
-<<<<<<< HEAD
 ## Q1. 로그인 인증
 
 - Session ID + Cookie
@@ -264,4 +263,3 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 - [permissions 참고](https://velog.io/@joje/Authentication%EA%B3%BC-Permission#2-%ED%97%88%EA%B0%80%EC%99%80-%EA%B6%8C%ED%95%9C-authorizations-and-permissions)
 
 
->>>>>>> 2d9b0b226879a30ce158ec64d0922cfab30ed2ec
