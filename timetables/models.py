@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Profile
+from accounts.models import User
 
 WEEK_CHOICES=[('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
               ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'), ('Friday', 'Friday'),
@@ -8,7 +8,7 @@ WEEK_CHOICES=[('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
 
 class Timetable(models.Model):
     title=models.CharField(max_length=64)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

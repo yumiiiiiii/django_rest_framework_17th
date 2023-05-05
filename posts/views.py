@@ -98,7 +98,7 @@ class PostViewSet(viewsets.ModelViewSet):
     search_fields = ['content', 'user__nickname']
 
     def perform_create(self, serializer):
-        serializer.save(user = self.request.user.profile)
+        serializer.save(user = self.request.user)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -106,6 +106,6 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class=CommentSerializer
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user.profile)
+        serializer.save(user=self.request.user)
 
 
