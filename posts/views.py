@@ -3,6 +3,8 @@ import django_filters
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
+
+from .permissions import IsOwnerOrReadOnly
 from .serializers import *
 from rest_framework.views import APIView
 
@@ -105,6 +107,7 @@ class PostViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['content', 'user__nickname']
 
+    permission_classes = [IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)

@@ -230,6 +230,32 @@ REST_FRAMEWORK = {
     + DjangoModelPermissionsOrAnonReadOnly : DjangoModelPermissions과 유사하나, 비인증 요청에게는 읽기만 허용
     + DjangoObjectPermissions : 비인증 요청은 거부하고, 인증된 요청은 Object에 대한 권한 체크를 수행
 - 사실 아래 3개는 안써봐서 모르겠다...
+- 위의 인증방식중에는 작성자와 로그인한 유저가 동일해야 C..UD수행이 가능한 인증방식이 없었다. 그래서 만들어주기로 함!
+```python
+from rest_framework import permissions
+
+class IsOwnerOrReadOnly(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        # 읽기 권한 요청이 들어오면 허용
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # 요청자(request.user)가 객체(post)의 user와 동일한지 확인
+        return obj.user == request.user
+```
+- 참고로 SAFE_METHODS는 기본적으로 ('GET', 'HEAD', 'OPTIONS') 이다.
+- 다른 유저로 로그인 후 수정을 시도하면
+```python
+{
+	"detail": "이 작업을 수행할 권한(permission)이 없습니다."
+}
+```
+- 아싸🤗🤗🤗🤗🤗
+
+6️⃣ 보안
+- Cors 설정...옛날에 아무것도 모르고 프론트랑 연결 시도하다가 오류나서 헤맸던 기억이..ㅜㅜ
+- settings에 cors관련해서 설치 후 작성해줌! 모든 호스트 허용으로 해줬다.
 
 
 ---
