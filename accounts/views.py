@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import auth
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import User, Friend
@@ -45,6 +46,7 @@ class SignUpView(APIView):
 
 class LoginView(APIView):
     serializer_class = LoginSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         user = authenticate(
@@ -68,7 +70,7 @@ class LoginView(APIView):
             )
             # jwt 토큰 => 쿠키에 저장
             res.set_cookie("access", access_token, httponly=True)
-            res.set_cookie("refresh", refresh_token, httponly=True)
+            # res.set_cookie("refresh", refresh_token, httponly=True)
             return res
         else:
             return Response({'message': "존재하지 않는 유저"}, status=status.HTTP_400_BAD_REQUEST)
@@ -96,11 +98,21 @@ class FriendList(APIView):
 #로그아웃 함수
 class LogoutView(APIView):
 
+    # def post(self, request):
+    #     response = Response({
+    #         "message": "로그아웃 성공"
+    #         }, status=status.HTTP_202_ACCEPTED)
+    #     auth.logout(request)
+    #
+    #     return response
+
     def post(self, request):
         response = Response({
-            "message": "로그아웃 성공"
-            }, status=status.HTTP_202_ACCEPTED)
-        auth.logout(request)
+            "message": "Logout success"
+        }, status=status.HTTP_202_ACCEPTED)
+        # response.delete_cookie('refresh')
+        response.delete_cookie('access')
+        # auth.logout(request)
 
         return response
 
