@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class User(AbstractUser):
-    nickname = models.TextField(max_length=10, unique=True)
+    nickname = models.CharField(max_length=32)
     university = models.TextField(max_length=16)
     enter_year = models.IntegerField(validators=[MinValueValidator(2000), MaxValueValidator(2030)], blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
