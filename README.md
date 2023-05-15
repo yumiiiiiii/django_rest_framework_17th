@@ -11,7 +11,7 @@
 #0 48.15 WARNING: You are using pip version 20.1.1; however, version 23.1.2 is available.
 #0 48.15 You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
 ```
-- 내가 설치한 라이브러리들이랑 실행하기 위한 장치들의 버전이 낮아서 생기는 문제들 갔다...
+- 내가 설치한 라이브러리들이랑 실행하기 위한 장치들의 버전이 낮아서 생기는 문제들 같다...
 - 계속해서 업데이트를 진행해주었는데 계속 같은 오류가 떠서 문제 였는데 알고보니까 Dockerfile의 컨테이너를 실행할 때 버전 업그레이드를 해줘야 하는 문제였다.
 ```Dockerfile
 RUN pip install --upgrade pip setuptools wheel
