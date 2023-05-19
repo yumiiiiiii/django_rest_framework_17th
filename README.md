@@ -17,7 +17,8 @@
 RUN pip install --upgrade pip setuptools wheel
 ```
 ----
-- 계속 오류가 뜨는데 용량과 windows와 mac의 차이로 생기는 오류 같아서...인터넷에 나온 방식으로 바꿔봤다.
+- ~~계속 오류가 뜨는데 용량과 windows와 mac의 차이로 생기는 오류 같아서...인터넷에 나온 방식으로 바꿔봤다.~~
+- 아님 컨테이너는 아예 별도의 OS이므로...저 오류는 아니다. 다만 slim-buster가 alpine보다 더 가벼운 이미지여서 오류가 안난거라고 한다..
 ```Dockerfile
 #FROM python:3.8.3-alpine
 FROM python:3.8.3-slim-buster
@@ -25,7 +26,8 @@ FROM python:3.8.3-slim-buster
 #RUN apk add --no-cache mariadb-connector-c-dev
 #RUN apk update && apk add python3 python3-dev mariadb-dev build-base && pip3 install mysqlclient && apk del python3-dev mariadb-dev build-base
 ```
-- 또 apk는 mac용(??)이라고 해서 저부분도 주석처리했다.
+- ~~또 apk는 mac용(??)이라고 해서 저부분도 주석처리했다.~~
+- 아니 그거아님...apk는 alpine용 명령어, slim-buster는 apt-get 명령어를 사용한다.
 ---
 - mysqlclinet가 설치가 안된다.
 ```
@@ -77,3 +79,4 @@ RUN sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 - 오류가 너무 많이 나서...오류 하나를 해결하면 새로운 오류가 2개가 나온다...
 - 계속해서 오류를 고치다가 처음 셋팅에서 너무 많이 벗어나고, 끝이 없어보여 아예 처음부터 다시 해봐야 할 듯하다..ㅜㅜ
 - 너무 아쉬움이 많은 과제입니다...
+- 으앙아 .env.prod 잘못올렸다...RDS를 아예 다시 파야겠다.
