@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: yumi1226
+      MYSQL_ROOT_PASSWORD: mysql
     expose:
       - 3306
     ports:
@@ -22,10 +22,10 @@ services:
     build: .
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     environment:
-      MYSQL_ROOT_PASSWORD: yumi1226
+      MYSQL_ROOT_PASSWORD: mysql
       DATABASE_NAME: mysql
       DATABASE_USER: 'root'
-      DATABASE_PASSWORD: yumi1226
+      DATABASE_PASSWORD: mysql
       DATABASE_PORT: 3306
       DATABASE_HOST: db
       DJANGO_SETTINGS_MODULE: django_rest_framework_17th.settings.dev

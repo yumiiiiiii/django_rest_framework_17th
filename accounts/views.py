@@ -15,6 +15,7 @@ from rest_framework.views import APIView
 
 class SignUpView(APIView):
     serializer_class = SignUpSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
