@@ -1,1 +1,1 @@
-deploy 확인
+gunicorn
